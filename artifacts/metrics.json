@@ -1,0 +1,8 @@
+{
+    "mae": 0.0,
+    "mse": 0.0,
+    "rmse": 0.0,
+    "r2_score": 1.0,
+    "training_samples": 8,
+    "testing_samples": 2
+}

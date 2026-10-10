@@ -1,0 +1,15 @@
+{
+    "model_name": "LinearRegression",
+    "target": "score",
+    "features": [
+        "study_hours"
+    ],
+    "random_state": 42,
+    "test_size": 0.2,
+    "training_samples": 8,
+    "testing_samples": 2,
+    "intercept": 24.999999999999993,
+    "coefficient": 10.000000000000002,
+    "trained_at_utc": "2026-10-10T07:21:22.504841+00:00",
+    "model_file": "artifacts/model.pkl"
+}

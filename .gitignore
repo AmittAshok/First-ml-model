@@ -1,4 +1,15 @@
+
+# Python virtual environment
 .venv/
+venv/
+
+# Python cache
 __pycache__/
-*.pyc
-model.pkl
+*.py[cod]
+
+# Environment variables and secrets
+.env
+
+# Generated ML artifacts
+artifacts/*.pkl
+
