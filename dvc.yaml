@@ -1,0 +1,31 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+      - src/prepare.py
+      - data/student_scores.csv
+    params:
+      - train.test_size
+      - train.random_state
+    outs:
+      - data/train.csv
+      - data/test.csv
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/train.csv
+    outs:
+      - artifacts/model.pkl
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - data/test.csv
+      - artifacts/model.pkl
+    metrics:
+      - artifacts/metrics.json
+    outs:
+      - artifacts/predictions.csv
