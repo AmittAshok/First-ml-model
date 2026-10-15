@@ -1,0 +1,59 @@
+
+name: ML Model CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest httpx
+
+      - name: Train the ML model
+        run: python train.py
+
+      - name: Check API imports
+        run: python -c "import app; print('API import successful')"
+
+      - name: Test prediction API
+        run: |
+          python - <<'PY'
+          from fastapi.testclient import TestClient
+          from app import app
+
+          client = TestClient(app)
+          response = client.get("/predict", params={"hours": 8})
+
+          assert response.status_code == 200, response.text
+          result = response.json()
+          assert "predicted_score" in result, result
+
+          print("Prediction API test passed:", result)
+          PY
+
+      - name: Build Docker image
+        run: docker build -t first-ml-model:${{ github.sha }} .
+
