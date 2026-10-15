@@ -7,7 +7,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app.py .
-COPY model.pkl .
+COPY artifacts/model.pkl .
 
 EXPOSE 8000
 
