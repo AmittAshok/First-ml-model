@@ -1,5 +1,5 @@
 outs:
-- md5: 1e55aee7d14a1c141d35c86228864bf2
-  size: 66
+- md5: f41c9b3e64c60ffc0a6bb164eff54666
+  size: 73
   hash: md5
   path: student_scores.csv

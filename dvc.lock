@@ -5,32 +5,32 @@ stages:
     deps:
     - path: data/student_scores.csv
       hash: md5
-      md5: 1e55aee7d14a1c141d35c86228864bf2
-      size: 66
+      md5: f41c9b3e64c60ffc0a6bb164eff54666
+      size: 73
     - path: src/prepare.py
       hash: md5
       md5: ba49b571e668909016e5802d0f318196
       size: 1176
     params:
       params.yaml:
-        train.random_state: 42
+        train.random_state: 7
         train.test_size: 0.25
     outs:
     - path: data/test.csv
       hash: md5
-      md5: 51a08b0211332dab7004c290e7ba350f
-      size: 35
+      md5: e2cf23495aec5cdf740e4d4e12bbe88e
+      size: 36
     - path: data/train.csv
       hash: md5
-      md5: 893df6a03c5fa301959a9e207a0d132b
-      size: 51
+      md5: 62ed7609b60ad186ceee3132e4ffc7c1
+      size: 57
   train:
     cmd: python src/train.py
     deps:
     - path: data/train.csv
       hash: md5
-      md5: 893df6a03c5fa301959a9e207a0d132b
-      size: 51
+      md5: 62ed7609b60ad186ceee3132e4ffc7c1
+      size: 57
     - path: src/train.py
       hash: md5
       md5: f5aaadac457431641d7b6353c7b1fb16
@@ -38,19 +38,19 @@ stages:
     outs:
     - path: artifacts/model.pkl
       hash: md5
-      md5: 3db1f63574cc7a54ee8d716fb13d36bb
+      md5: 57f4e2b1d79d1128cbcb6a54ef607ef3
       size: 895
   evaluate:
     cmd: python src/evaluate.py
     deps:
     - path: artifacts/model.pkl
       hash: md5
-      md5: 3db1f63574cc7a54ee8d716fb13d36bb
+      md5: 57f4e2b1d79d1128cbcb6a54ef607ef3
       size: 895
     - path: data/test.csv
       hash: md5
-      md5: 51a08b0211332dab7004c290e7ba350f
-      size: 35
+      md5: e2cf23495aec5cdf740e4d4e12bbe88e
+      size: 36
     - path: src/evaluate.py
       hash: md5
       md5: 6688d6a927c769d172f69e640d51199c
@@ -58,9 +58,9 @@ stages:
     outs:
     - path: artifacts/metrics.json
       hash: md5
-      md5: 7e1285aacdebc939bf719e703199a6b2
+      md5: d6d6865466751764d61d47084f4a7352
       size: 157
     - path: artifacts/predictions.csv
       hash: md5
-      md5: 7de620dd22185e0e36d80fb0e56b914d
-      size: 144
+      md5: ac6ac1d98097137e4400c87cd72001ed
+      size: 145
